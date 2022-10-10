@@ -39,14 +39,14 @@ productList.push({
     image: 'https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
 });
 productList.push({
-    nombre: 'pantalla',
-    precio: 300,
-    imagen: 'https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+    name: 'pantalla',
+    price: 300,
+    image: 'https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
 });
 productList.push({
-    nombre: 'tele',
-    precio: 400,
-    imagen: 'https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+    name: 'tele',
+    price: 400,
+    image: 'https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
 });
 
 /*<div class="product-card">
@@ -62,36 +62,40 @@ productList.push({
 </div>
 </div>*/
 
-for (product of productList) {
-const divProductCard = document.createElement('div');
-divProductCard.classList.add('product-card');
-
-const productImage = document.createElement('img');
-productImage.setAttribute('src', product.image);
-
-const divProductInfo = document.createElement('div');
-divProductInfo.classList.add('product-info');
-
-const divPriceName = document.createElement('div');
-
-const productPrice = document.createElement('p');
-productPrice.innerText = '$120,00';
-
-const productName = document.createElement('p');
-productName.innertext = 'Bike';
-
-const figureLabel = document.createElement('figure');
-
-const iconCart = document.createElement('img');
-iconCart.setAttribute('src', './icons/bt_add_to_cart.svg' );
-
-cardsContainer.appendChild(divProductCard);
-
-divProductCard.append(divProductInfo,productImage);
-
-divProductInfo.append(figureLabel,divPriceName);
-
-divPriceName.append(productPrice,productName);
-
-figureLabel.appendChild(iconCart);
+function renderProducts (arr) {
+    for (product of arr) {
+        const divProductCard = document.createElement('div');
+        divProductCard.classList.add('product-card');
+        
+        const productImage = document.createElement('img');
+        productImage.setAttribute('src', product.image);
+        
+        const divProductInfo = document.createElement('div');
+        divProductInfo.classList.add('product-info');
+        
+        const divPriceName = document.createElement('div');
+        
+        const productPrice = document.createElement('p');
+        productPrice.innerText = product.price;
+        
+        const productName = document.createElement('p');
+        productName.innerText = product.name;
+        
+        const figureLabel = document.createElement('figure');
+        
+        const iconCart = document.createElement('img');
+        iconCart.setAttribute('src', './icons/bt_add_to_cart.svg' );
+        
+        cardsContainer.appendChild(divProductCard);
+        
+        divProductCard.append(productImage,divProductInfo,);
+        
+        divProductInfo.append(divPriceName,figureLabel);
+        
+        divPriceName.append(productPrice,productName);
+        
+        figureLabel.appendChild(iconCart);
+        }
 }
+
+renderProducts(productList);

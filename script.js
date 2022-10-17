@@ -5,6 +5,8 @@ const mobileMenu = document.querySelector('.mobile-menu');
 const shoppingCartMenu = document.querySelector('.navbar-shopping-cart');
 const shoppingCartContainer = document.querySelector('#shoppingCartContainer');
 const cardsContainer = document.querySelector('.cards-container');
+const productDetailContainer= document.querySelector('#product-detail');
+const buttonCloseDetailContainer = document.querySelector('.product-detail-close');
 
 menuEmail.addEventListener('click', toogleDesktopMenu);
 
@@ -30,7 +32,17 @@ function toogleshoppingCartContainer() {
         mobileMenu.classList.add('inactive');
     }
     shoppingCartContainer.classList.toggle('inactive');
+    productDetailContainer.classList.add('inactive');
 }
+
+function closeProductDetailAside () {
+
+    productDetailContainer.classList.add('inactive');
+}
+
+buttonCloseDetailContainer.addEventListener('click', closeProductDetailAside);
+
+
 
 const productList = [];
 productList.push({
@@ -69,6 +81,13 @@ function renderProducts (arr) {
         
         const productImage = document.createElement('img');
         productImage.setAttribute('src', product.image);
+
+        productImage.addEventListener('click', openProductDetailAside);
+
+        function openProductDetailAside () {
+            shoppingCartContainer.classList.add('inactive');
+            productDetailContainer.classList.remove('inactive');
+        }
         
         const divProductInfo = document.createElement('div');
         divProductInfo.classList.add('product-info');
